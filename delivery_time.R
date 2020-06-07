@@ -1,0 +1,13 @@
+Delivery_time<-read.csv("C:/Users/admin/Desktop/Datascience/Linear Regression/delivery_time.csv")
+install.packages("lattice")
+library(lattice)
+dotplot(Delivery_time$Delivery.Time,main="Dot plot for Delivery.Time circulations",col="dodgerblue4")
+dotplot(Delivery_time$Sorting.Time,main="Dot plot for Sorting.Time circulations",col="dodgerblue4")
+boxplot(Delivery_time$Delivery.Time,col="dodgerblue4")
+boxplot(Delivery_time$Sorting.Time,col="dodgerblue4")
+colnames(Delivery_time)
+model <- lm(Delivery.Time~Sorting.Time,data=Delivery_time)
+summary(model)
+Pred <- predict(model)
+newdata <- data.frame(Delivery_time,Pred,"Error"=Delivery_time$Delivery.Time,-Pred)
+newdata
